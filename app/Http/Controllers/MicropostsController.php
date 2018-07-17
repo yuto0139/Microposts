@@ -21,10 +21,11 @@ class MicropostsController extends Controller
             ];
             $data += $this->counts($user);
             return view('users.show', $data);
-        }else {
-            return view('welcome');
         }
+            return view('welcome');
+        
     }
+    
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -37,6 +38,7 @@ class MicropostsController extends Controller
 
         return redirect()->back();
     }
+    
     public function destroy($id)
     {
         $micropost = \App\Micropost::find($id);
@@ -47,5 +49,7 @@ class MicropostsController extends Controller
 
         return redirect()->back();
     }
+    
+    
     
 }

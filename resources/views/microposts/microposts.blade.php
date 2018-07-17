@@ -13,8 +13,18 @@
                 <p>{!! nl2br(e($micropost->content)) !!}</p>
             </div>
             <div>
+                @if (Auth::user()->is_favoring($micropost->id))
+                    {!! Form::open(['route' => ['user.cancel_favorite', $micropost->id], 'method' => 'delete', 'style' => 'display: inline;']) !!}
+                        {!! Form::submit('Unfavorite', ['class' => "btn btn-warning btn-xs"]) !!}
+                    {!! Form::close() !!}
+                @else
+                    {!! Form::open(['route' => ['user.give_favorite', $micropost->id], 'style' => 'display: inline;']) !!}
+                        {!! Form::submit('Favorite', ['class' => "btn btn-success btn-xs"]) !!}
+                    {!! Form::close() !!}
+                @endif
+                
                 @if (Auth::id() == $micropost->user_id)
-                    {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete', 'style' => 'display: inline;']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
                     {!! Form::close() !!}
                 @endif
