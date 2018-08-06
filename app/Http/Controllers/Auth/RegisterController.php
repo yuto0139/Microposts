@@ -7,6 +7,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+//メール送信機能にて追加
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
+
 class RegisterController extends Controller
 {
     /*
@@ -67,6 +73,27 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+        
+    public function register(Request $request)
+    {
+        // 入力値のバリデーション
+        $this->validator($request->all())->validate();
+
+        // 入力値から User を作成し（つまり登録）、登録イベントを発行。
+        event(new Registered($user = $this->create($request->all())));
+
+        //メール送信処理
+        Mail::to('test@example.com')
+         ->send(new TestMail());
+         
+        // その User でログイン 
+        $this->guard()->login($user);
+
+        // 登録後のリダイレクト先の判定など
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+        
     }
     
 }
