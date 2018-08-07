@@ -4,13 +4,15 @@
 
 <div class="text-center">
 
-@include('picture_update.picture')
+@include('picture_update.picture') <br>
 
-<p>ユーザー名</p>
 
-<div class="">{{ $user->name }}</div>
+<h5>ユーザー名</h5>
 
-<p>メールアドレス</p>
+<div class="">{{ $user->name }}</div><br>
+
+
+<h5>メールアドレス</h5>
 
 {{ $user->email }}
 

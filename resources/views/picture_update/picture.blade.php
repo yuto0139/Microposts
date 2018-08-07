@@ -24,7 +24,7 @@
                 <img src="{{ asset('storage/avatar/' . $user->avatar_filename) }}" alt="avatar" />
             </p>
         @endif
-        {!! Form::label('file', '画像アップロード', ['class' => 'control-label']) !!}
+        {!! Form::label('file', 'ユーザー画像アップロード', ['class' => 'control-label']) !!}
         {!! Form::file('file', ['class' => 'center-block']) !!}
     </div>
     

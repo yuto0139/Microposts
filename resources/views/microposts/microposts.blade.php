@@ -23,11 +23,35 @@
                     {!! Form::close() !!}
                 @endif
                 
+                <!-- モーダルへのボタン -->
                 @if (Auth::id() == $micropost->user_id)
-                    {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete', 'style' => 'display: inline;']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
-                    {!! Form::close() !!}
+                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal{{$micropost->id}}">Delete</button>
                 @endif
+                
+                <!-- モーダル本体 -->
+                <div class="modal fade" id="myModal{{$micropost->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h3 class="modal-title"></h3>
+                     <h4 class="modal-title alert alert-danger">『{{ $micropost->content }}』</h4>
+                    </div>
+                    <div class="modal-body">
+                      <h4>Are you really sure to delete it?</h4>
+                    </div>
+                    <div class="modal-footer">
+                      
+                　　<!-- 削除ボタンフォーム -->
+                    {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">close</button>
+                        {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                    {!! Form::close() !!}
+                    </div>
+                  </div>
+                </div>
+                </div>
+                
+                
             </div>
         </div>
     </li>
