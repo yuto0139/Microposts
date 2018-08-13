@@ -23,7 +23,9 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
     Route::get('user', 'HomeController@show')->name('user.home');
-    Route::group(['prefix' => 'users/{id}'], function () {
+    Route::post('/upload', 'HomeController@upload');
+    Route::get('/home', 'HomeController@index');
+     Route::group(['prefix' => 'users/{id}'], function () {
         Route::post('follow', 'UserFollowController@store')->name('user.follow');
         Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');
         Route::get('followings', 'UsersController@followings')->name('users.followings');
@@ -39,5 +41,3 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
 });
 
-Route::post('/upload', 'HomeController@upload');
-Route::get('/home', 'HomeController@index');
