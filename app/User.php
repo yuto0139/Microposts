@@ -43,7 +43,7 @@ class User extends Authenticatable
     } 
     
     public function follow($userId)
-{
+    {
     // 既にフォローしているかの確認
     $exist = $this->is_following($userId);
     // 自分自身ではないかの確認
@@ -57,10 +57,10 @@ class User extends Authenticatable
         $this->followings()->attach($userId);
         return true;
     }
-}
+    }
 
     public function unfollow($userId)
-{
+    {
     // 既にフォローしているかの確認
     $exist = $this->is_following($userId);
     // 自分自身ではないかの確認
@@ -74,20 +74,18 @@ class User extends Authenticatable
         // 未フォローであれば何もしない
         return false;
     }
-}
+    }
 
     public function is_following($userId) {
-    return $this->followings()->where('follow_id', $userId)->exists();
-}
+        return $this->followings()->where('follow_id', $userId)->exists();
+    }
      
      public function feed_microposts()
     {
-        $follow_user_ids = $this->followings()-> pluck('users.id')->toArray();
-        $follow_user_ids[] = $this->id;
+    $follow_user_ids = $this->followings()-> pluck('users.id')->toArray();
+    $follow_user_ids[] = $this->id;
         return Micropost::whereIn('user_id', $follow_user_ids);
     }
-
-
 
     public function favorite_with()
     {
@@ -95,7 +93,7 @@ class User extends Authenticatable
     }
     
     public function give_favorite($micropostId)
-{
+    {
     // 既にお気に入りしているかの確認
     $exist = $this->is_favoring($micropostId);
 
@@ -106,10 +104,10 @@ class User extends Authenticatable
         // 未お気に入りであればお気に入りする
         $this->favorite_with()->attach($micropostId);
         return true;
-}    
+    }    
 
     public function cancel_favorite($micropostId)
-{
+    {
     // 既にお気に入りしているかの確認
     $exist = $this->is_favoring($micropostId);
 
@@ -120,11 +118,11 @@ class User extends Authenticatable
     }
         // 未お気に入りであれば何もしない
         return false;
-}
+    }
 
     // 条件内(micropost_id = $micropostId)で取得できるレコードが存在するかどうか判定
     public function is_favoring($micropostId) {
     return $this->favorite_with()->where('micropost_id', $micropostId)->exists();
-}
+    }
 
-}
+    }
