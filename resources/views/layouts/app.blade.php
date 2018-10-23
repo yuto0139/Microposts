@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#">
-    <head>
-        <title>Microposts</title>
+<html>
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Microposts</title>
+        <meta name="description" content="フレームワークLaravelではじめてのWebサービス作りをしました。" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         
         <meta property="og:title" content="Microposts〜 Twitterライクなアプリケーション" />
         <meta property="og:type" content="website" />
