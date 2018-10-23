@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html prefix="og: http://ogp.me/ns#">
     <head>
         <title>Microposts</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <meta property="og:title" content="Microposts〜 Twitterライクなアプリケーション" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="http://herokumicroposts2018.herokuapp.com/" />
-        <meta property="og:image" content="http://herokumicroposts2018.herokuapp.com/storage/app/public/ogp/Microposts.png" />
+        <meta property="og:image" content="http://herokumicroposts2018.herokuapp.com/Microposts.png" />
         <meta property="og:site_name" content="Microposts" />
         <meta property="og:description" content="フレームワークLaravelではじめてのWebサービス作りをしました。" />
+        
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
